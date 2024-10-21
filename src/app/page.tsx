@@ -1,7 +1,15 @@
+"use client"
+
 import Image from "next/image";
 import styles from "./page.module.css";
+import withAuth from "./utils/withAuth";
+import { useSession } from "next-auth/react";
 
-export default function Home() {
+const Home = () => {
+  const { data } = useSession();
+
+  console.log({ data });
+  
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -92,4 +100,6 @@ export default function Home() {
       </footer>
     </div>
   );
-}
+};
+
+export default withAuth(Home);
